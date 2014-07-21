@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+    /*function stack() {
+        var that = {};
+
+        that.items = [];
+
+        that.pop = function pop() {
+			console.log("calling parent")
+            return that.items.pop();
+        };
+
+        that.push = function push(item) {
+            that.items.push(item);
+        };
+
+        return that;
+    }*/
+
+   /* var myStack = stack();
+    myStack.push(5);
+    myStack.push(7);
+    console.log(myStack)*/
+    /*console.log(myStack.pop()); // returns 7
+    console.log(myStack.pop()); // returns 5
+    console.log(myStack.pop());*/ // returns undefined
+	
+	
+    /********************Inheritance*************************/
+    /*function namedStack(name) {
+        var that = stack();
+         ///console.log(myStack.pop());
+        that.getName = function getName() {
+            return name;
+        };
+
+        return that;
+    }
+	
+    var myName = new namedStack('Snehal');
+	myName.push('vijay')
+    console.log(myName);
+	console.log(myName.getName());*/
+    
+    /********************Overriding calling super methods*************************/
+	
+   /* function namedStack(name) {
+        var that = stack(),
+        	super_pop = that.pop,
+            super_push = that.push;
+
+        that.getName = function getName() {
+            return name;
+        };
+
+        that.pop = function pop(index) {
+            console.log('Popping from ' + name);
+            return super_pop();
+        };
+
+        that.push = function push(item) {
+            console.log('Pushing ' + item + ' into ' + name);
+            return super_push(item);
+        };
+
+        return that;
+    }
+
+    var myNamedStack = namedStack('my stack');
+    myNamedStack.getName(); 
+    myNamedStack.push(7); 
+    myNamedStack.push(5); 
+	myNamedStack.push(6); 
+    myNamedStack.push(9);
+	console.log(myNamedStack);
+     
+	console.log(myNamedStack.pop(2));*/
+
+    /********************Prototype*************************/
+    /*function Stack() {
+        this.items = [];
+    }
+    Stack.prototype.push = function push(item) {
+        this.items.push(item);
+    };
+
+    Stack.prototype.pop = function pop() {
+        return this.items.pop();
+    };
+    var stack = new Stack();
+    stack.push(5);
+    stack.push(7);
+    console.log(stack); // returns 7
+    //stack.pop(); // returns 5
+    //stack.pop();*/ // returns undefined
+    /********************Understanding prototype*************************/
+    /* var A = function(name) {
+        this.name = name;
+    }
+
+    console.log(A.prototype == A.__proto__);
+    //A's prototype is set to its constructor's prototype property
+    console.log(A.__proto__ == Function.prototype)*/
+
+    /********************Overriding calling super methods*************************/
+    //Constructor. <em>this</em> is returned as new object and its internal [[prototype]] property will be set to the constructor's default prototype property
+    /* var Circle = function(radius) {
+        this.radius = radius;
+        //next line is implicit, added for illustration only
+        console.log(this.__proto__ = Circle.prototype);
+    }
+    Circle.prototype.area = function() {
+        return Math.PI * this.radius * this.radius;
+    }
+
+    var a = new Circle(3),
+        b = new Circle(4);
+    console.log(a.area().toFixed(2)); //28.27
+    console.log(b.area().toFixed(2)); //50.27*/
+    /*******************************************************************************************************************************/
+
+    //a prototype is a property of functions and of objects that are created by constructor functions
+
+    /*function Vehicle(wheels, engine) {
+        this.wheels = wheels;
+        this.engine = engine;
+    }
+
+
+    var testVehicle = new Vehicle(2, false);
+    Vehicle.prototype.color = "red";
+    var testColor = testVehicle.color;
+    console.log(testColor)*/
+
+    ///
+
+    /***********http://javascript.info/tutorial/inheritance*************/
+
+    ///__proto__ link and searches in animal
+     /*var animal = {
+        eats: true
+    }
+    var rabbit = {
+        jumps: true
+    }
+    rabbit.__proto__ = animal // inherit
+    console.log(rabbit.eats)*/ // true
+
+
+    //  If the property is found in rabbit, then __proto__ is not checked.
+
+     /*var animal = {
+        eats: true
+    }
+    var fedUpRabbit = {
+        eats: false
+    }
+    fedUpRabbit.__proto__ = animal
+    console.log(fedUpRabbit.eats)*/ // false
+
+    /******************************************/
+    // Put method in animal and wil be avail in rabbit
+    // 2 steps
+
+    // 1. First, the interpreter looks up rabbit.eat. There’s no eat in rabbit object, so it goes to rabbit.__proto__ and finds it there.
+    // 2. The function runs with this = rabbit. this.full = true stores the value in the rabbit object:
+    /*var animal = {
+        eat: function() {
+            console.log("I'm full")
+            this.full = true
+        }
+    }
+
+    var rabbit = {
+        jump: function() {  }
+    }
+
+    rabbit.__proto__ = animal
+
+    rabbit.eat();*/
+
+
+
+
+
+
+
+
+
+    /*****************************************************************************************************/
+    // Prototype
+
+    /*function Rabbit(name) {
+        this.name = name
+    }
+
+    var rabbit = new Rabbit('John')
+
+    console.log(rabbit.name)*/ // John
+
+
+    //Rabbit.prototype = animal literally means the following:
+    //”set __proto__ = animal for all objects created by new Rabbit”
+
+
+
+    /*var animal = { eats: true }
+
+function Rabbit(name) { 
+  this.name = name
+}
+
+Rabbit.prototype = animal 
+
+var rabbit = new Rabbit('John')
+var rabbit2 = new Rabbit('John2')
+console.log( rabbit2.eats )*/ // true, because rabbit2.__proto__ == animal
+
+
+
+
+
+    /*******************************************************************************************************/
+    //Object.create
+
+    //Creates an empty object with given __proto__:
+
+
+    //Once the rabbit is created, we can add properties to it.
+   /* var animal = { eats: true, isPet: true, isWild: false }
+
+rabbit = Object.create(animal)
+rabbit.jumps = true
+console.log(Object.getPrototypeOf(rabbit))*/
+
+
+
+
+		/*
+			-----------------------------------------------
+				  SINGLE & MULTIPLE INHERITANCE
+			-----------------------------------------------
+		*/
+
+		var animal = { 
+				eats: true,
+				doSomething: function () {
+					console.log("calling anima's doSomething method");
+				}
+			}
+		
+		function Pets () {
+			console.log(this)
+			this.isFriendly = true,
+			this.color = 'white',
+			this.favFood = function favFood (food) {
+				console.log(this.name + ' likes ' + food);
+			}			
+		}
+			
+		/*Pets.prototype.eat = function eat () {
+			console.log("i can eat");
+		}*/
+		//other way
+		Pets.prototype = {
+			eat: function () {
+				console.log("calling eat method of pet");
+			}
+		}
+		
+		
+		function Food () {
+			this.aa = 2;
+		}
+		
+		/*Food.prototype = {
+			eat: function () {
+				console.log("calling eat method of food");
+			},
+			
+			healthy: function () {
+				console.log("calling healthy method of food");
+			}
+		}*/
+		
+		
+		function Rabbit(name) { 
+			this.name = name;		
+			//Pets.call(this); //inherit all properties not prototype, bit in pets this = rabbit
+		}
+		
+		//Rabbit.prototype = animal;
+		//Rabbit.prototype = Pets() //no inheritance
+		//Rabbit.prototype = new Pets() //inherit all properties not prototype, but in pets this = pets
+		//Rabbit.prototype = Pets.prototype //inherit only prototype of pets
+		//Rabbit.prototype = $.extend({}, Pets.prototype, Food.prototype)//inherit only prototype of all objects
+		
+		var rabbit = new Food()
+		console.log( rabbit )
+		console.log( rabbit.aa )
+		
+		
+		
+		/*var rabbit2 = new Rabbit('John2')
+		console.log( rabbit2 )
+		console.log( rabbit2.eats )
+		
+		try {
+			console.log( rabbit2.doSomething() )
+		} catch (e) {console.info("no animal inheritance")}
+		
+		console.log( rabbit2.name )
+		console.log( rabbit2.isFriendly )
+		console.log( rabbit2.color ) 
+		
+		try {
+			rabbit2.eat()
+		} catch (e) {console.info("error while calling eat()")}
+		
+		try {
+			rabbit2.favFood('carrot');*
+		} catch (e) {console.info("error while calling favFood()")}*/
+		
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

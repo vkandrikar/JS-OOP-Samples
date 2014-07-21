@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+   
+		/*
+			-----------------------------------------------
+				  SINGLE & MULTIPLE INHERITANCE
+			-----------------------------------------------
+		*/
+
+		var animal = { 
+				eats: true,
+				doSomething: function () {
+					console.log("calling anima's doSomething method");
+				}
+			}
+		
+		function Pets () {
+			console.log(this)
+			this.isFriendly = true,
+			this.color = 'white',
+			this.favFood = function favFood (food) {
+				console.log(this.name + ' likes ' + food);
+			}			
+		}
+			
+		/*Pets.prototype.eat = function eat () {
+			console.log("i can eat");
+		}*/
+		//other way
+		Pets.prototype = {
+			eat: function () {
+				console.log("calling eat method of pet");
+			}
+		}
+		
+		
+		function Food () {
+			
+		}
+		
+		Food.prototype = {
+			eat: function () {
+				console.log("calling eat method of food");
+			},
+			
+			healthy: function () {
+				console.log("calling healthy method of food");
+			}
+		}
+		
+		
+		function Rabbit(name) { 
+			this.name = name;		
+			Pets.call(this); //inherit all properties not prototype, bit in pets this = rabbit
+		}
+		
+		//Rabbit.prototype = animal;
+		//Rabbit.prototype = Pets() //no inheritance
+		//Rabbit.prototype = new Pets() //inherit all properties not prototype, but in pets this = pets
+		Rabbit.prototype = Pets.prototype //inherit only prototype of pets
+		//Rabbit.prototype = $.extend({}, animal, Pets.prototype, Food.prototype)//inherit only prototype of all objects
+		
+		//var rabbit = new Rabbit('John')
+		var rabbit2 = new Rabbit('John2')
+		console.log( rabbit2 )
+		console.log( rabbit2.eats )
+		
+		try {
+			console.log( rabbit2.doSomething() )
+		} catch (e) {console.info("no animal inheritance")}
+		
+		console.log( rabbit2.name )
+		console.log( rabbit2.isFriendly )
+		console.log( rabbit2.color ) 
+		
+		try {
+			rabbit2.eat()
+		} catch (e) {console.info("error while calling eat()")}
+		
+		try {
+			rabbit2.favFood('carrot');
+		} catch (e) {console.info("error while calling favFood()")}
+		
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

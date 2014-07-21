@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+</head>
+
+<body>
+    <script type="text/javascript">
+    var A = function() {
+        this.x = function() { // x is a method assigned to the object using "this"
+            console.log('A');
+        };
+    };
+    A.prototype.updateX = function(value) {
+        this.x = function() {
+            console.log(value);
+        }
+    };
+
+    var a1 = new A();
+    var a2 = new A();
+    a1.x(); // Displays 'A'
+    a2.x(); // Also displays 'A'
+    a1.updateX('Z');
+    a1.x(); // Displays 'Z'
+    a2.x(); // Still displays 'A'
+
+    console.log("**********************************************");
+
+    
+    var B = function() {};
+    B.prototype.x = function() { // Here x is a method assigned to the object using "prototype"
+        console.log('B');
+    };
+    B.prototype.updateX = function(value) {
+        B.prototype.x = function() {
+            console.log(value);
+        }
+    }
+
+    var b1 = new B();
+    var b2 = new B();
+    b1.x(); // Displays 'B'
+    b2.x(); // Also displays 'B'
+    b1.updateX('Y');
+    b1.x(); // Displays 'Y'
+    b2.x();
+    </script>
+</body>
+
+</html>

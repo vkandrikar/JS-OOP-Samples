@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+</head>
+
+<body>
+    <script type="text/javascript">
+    //Inheritence
+    /*function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sayHi = function() {
+            return this.name + " Says Hi";
+        }
+    }
+
+    function Student(){}
+    // First way of Inheritance
+    Student.prototype = new Person("Snehal", 27);
+    var student = new Student();
+    console.log(student)*/
+    /**********************************************************************************/
+    //Encapsulation
+
+     function Person() {
+        var dob = "7 July";
+        console.log('.' +dob)
+        return {
+            age: "23",
+            getBirth: function() {
+                return dob;
+            }
+        }
+    }
+
+    var date = new Person();
+    console.log(date)
+    console.log(date.getBirth());
+    /**********************************************************************************/
+    //Polymorphism
+
+    /*function Person() {
+        this.sayHI = function() {}
+    };
+
+    function Student() {};
+    Student.prototype = new Person();
+    Student.prototype.sayHI = function(l) {
+        return "Hi! I am a Student";
+    }
+
+    function Teacher() {};
+    Teacher.prototype = new Person();
+    Teacher.prototype.sayHI = function() {
+        return "Hi! I am a Teacher";
+    }
+    var sObj = new Student();
+    if (sObj instanceof Person) {
+        alert("Polymorphism");
+    }*/
+
+
+/*    var foo = function(){};
+alert( 'foo is a Function: ' + (foo instanceof Function) );
+alert( 'foo.prototype is an Object: ' + (foo.prototype instanceof Object) );*/
+
+/*function init() {
+    var name = "Mozilla"; 
+    function displayName() { 
+        alert (name);
+    }
+    displayName();    
+}
+init();*/
+
+/*
+function makeFunc() {
+  var name = "Mozilla";
+  function displayName() {
+    alert(name);
+  }
+  return displayName;
+}
+
+var myFunc = makeFunc();
+myFunc();*/
+
+
+    </script>
+</body>
+
+</html>

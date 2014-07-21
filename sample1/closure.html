@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+    <html>
+    
+    <head>
+        <title>Closure</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=100" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    
+    <body>
+    
+		<style>
+			body {
+				font-family: Helvetica, Arial, sans-serif;
+				font-size: 12px;
+			}
+        </style>
+        
+        
+        
+        <p id="help">Helpful notes will appear here</p>
+        <p>E-mail: <input type="text" id="email" name="email"></p>
+        <p>Name: <input type="text" id="name" name="name"></p>
+        <p>Age: <input type="text" id="age" name="age"></p>
+        
+        <hr>
+        
+        <a href="#" id="size-12">para1</a>
+        <a href="#" id="size-14">para2</a>
+        <a href="#" id="size-16">para3</a>
+        
+        
+        <script type="text/javascript">
+        
+			/*
+			A closure is a special kind of object that combines two things: 
+			a function, and the environment in which that function was created
+			*/
+			
+			function add(a){
+				return function(b){
+					return a + b;
+				}
+			}
+			
+			//var addFunc = add(4);
+			//console.log(addFunc(6));
+			
+			
+			
+			/*
+				*** Practical closures ***
+			*/
+			
+			function makeSizer(className, size) {
+				return function() {
+					$('.' + className).css('font-size', size+'px');
+				};
+			}	
+			
+			var size1 = makeSizer('test1', 22);
+			var size2 = makeSizer('test2', 34);
+			var size3 = makeSizer('test3', 46);
+			
+			$('#size-12').click(size1);
+			$('#size-14').click(size2);
+			$('#size-16').click(size3);
+			
+			
+			
+			/*
+				*** private methods with closures ***
+			*/
+			
+			var MakeCounter = function() {
+				var privateCounter = 0;
+				
+				function changeBy(val) {
+					privateCounter += val;
+				}
+				
+				return {
+					increment: function() {
+						changeBy(1);
+					},
+					
+					decrement: function() {
+						changeBy(-1);
+					},
+					
+					value: function() {
+						return privateCounter;
+					}
+				}  
+			};
+			
+			// in this closure we ve created 2 private items: 'privateCounter' & 'changeBy'
+			// none of these item can be accessed directly from outside 'MakeCounter'
+			
+			function privateDataSample () {
+				var mc = MakeCounter();
+				console.log("mc.value initial: " + mc.value());
+				mc.increment();
+				mc.increment();
+				console.log("mc.value after 2 increment: " + mc.value());
+				mc.decrement();
+				console.log("mc.value after 1 decrement: " + mc.value());
+			}
+			
+			//privateDataSample();
+			
+			/*
+				*** Simple example for understading the use of closure ***
+			*/
+			
+			
+			// not work alone
+			function showHelp(help) {
+			  $('#help').text(help);
+			}
+			
+			// works with closure			
+			function helpClosure(help) {
+				return function () {
+			  		showHelp(help);
+				}
+			}
+			
+			function setupHelp() {
+			  var helpText = [
+				  {'id': 'email', 'help': 'Your e-mail address'},
+				  {'id': 'name', 'help': 'Your full name'},
+				  {'id': 'age', 'help': 'Your age (you must be over 16)'}
+				];
+			
+			  for (var i = 0; i < helpText.length; i++) {
+				var item = helpText[i];
+				//not work properly
+				//$('#' + item.id).focus( function () {
+					//showHelp(item.help);
+				//});
+				
+				//works with closure
+				$('#' + item.id).focus(helpClosure(item.help)); 
+			  }
+			}
+			
+			//setupHelp();
+			
+			
+			
+			/*
+				*** redefining prototype vs appending in existing prototype ***
+				
+				1) When you redefine the prototype, you are removing any properties 
+				that DID exist on the item and you are giving it a whole new set
+				
+				2) when you are adding in existing prototype, you are leaving anything 
+				that exists in place and simply adding that one property
+				
+				3) If you are are starting with a freshly constructed object, 
+				both approaches do exactly the same thing.
+
+				4) If you are starting with an existing object, 
+				the second form is the only one that makes sense.
+			*/
+			
+			function MyObject(name, message) {
+			  this.name = name;
+			  this.message = message;
+			}
+			
+			MyObject.prototype.doSomething = function () {
+				
+			}
+			
+			console.log('*** object b4 redefinig prototype ***');
+			console.log(new MyObject('vijay', 'hi, how are you buddy?'));
+			
+			/*MyObject.prototype = {
+			  getName: function() {
+				return this.name;
+			  },
+			  
+			  getMessage: function() {
+				return this.message;
+			  }
+			};
+			
+			console.log('*** object after redefinig prototype ***');
+			console.log(new MyObject('vijay', 'hi, how are you buddy?'));*/
+			
+			MyObject.prototype.getName = function () {
+				return this.name;
+			}
+			
+			MyObject.prototype.getMessage = function () {
+				return this.message
+			}
+			
+			console.log('*** object after appending in existing prototype ***');
+			console.log(new MyObject('vijay', 'hi, how are you buddy?'));
+			
+        </script>
+        
+        <p class="test1">This is Closure example.</p></br>
+        <p class="test2">This is Closure example.</p></br>
+        <p class="test3">This is Closure example.</p>
+        
+        
+        
+    </body>
+</html>
+ 
