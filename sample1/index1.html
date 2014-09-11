@@ -254,7 +254,7 @@ console.log(Object.getPrototypeOf(rabbit))*/
 		var animal = { 
 				eats: true,
 				doSomething: function () {
-					console.log("calling anima's doSomething method");
+					console.log("calling animal's doSomething method");
 				}
 			}
 		
@@ -295,22 +295,22 @@ console.log(Object.getPrototypeOf(rabbit))*/
 		
 		function Rabbit(name) { 
 			this.name = name;		
-			//Pets.call(this); //inherit all properties not prototype, bit in pets this = rabbit
+			Pets.call(this); //inherit all properties not prototype, bit in pets this = rabbit
 		}
 		
 		//Rabbit.prototype = animal;
 		//Rabbit.prototype = Pets() //no inheritance
 		//Rabbit.prototype = new Pets() //inherit all properties not prototype, but in pets this = pets
-		//Rabbit.prototype = Pets.prototype //inherit only prototype of pets
+		Rabbit.prototype = Pets.prototype //inherit only prototype of pets
 		//Rabbit.prototype = $.extend({}, Pets.prototype, Food.prototype)//inherit only prototype of all objects
 		
-		var rabbit = new Food()
+		/*var rabbit = new Food()
 		console.log( rabbit )
-		console.log( rabbit.aa )
+		console.log( rabbit.aa )*/
 		
 		
 		
-		/*var rabbit2 = new Rabbit('John2')
+		var rabbit2 = new Rabbit('John2')
 		console.log( rabbit2 )
 		console.log( rabbit2.eats )
 		
@@ -327,8 +327,8 @@ console.log(Object.getPrototypeOf(rabbit))*/
 		} catch (e) {console.info("error while calling eat()")}
 		
 		try {
-			rabbit2.favFood('carrot');*
-		} catch (e) {console.info("error while calling favFood()")}*/
+			rabbit2.favFood('carrot');
+		} catch (e) {console.info("error while calling favFood()")}
 		
 
 

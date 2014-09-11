@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>OOP-Sample2</title>
+    </head>
+    
+    <body>
+    	
+    </body>
+    
+    <script>
+		/*
+			Avoid assigning variables to prototypes
+			Prototypes should not have properties that are not functions, because prototype properties that are not primitives (such as arrays and objects) will not behave as one would expect
+		*/
+		
+		/*function myFunt(name) {
+			this.name = name;
+		}
+		
+		myFunt.prototype = {
+			data: [1, 2, 3],// setting a non-primitive property
+			
+			showData: function () {
+				console.log("name: " + this.name + " data: " + this.data);
+			}
+		}
+		
+		var temp1 = new myFunt('Vijay');		
+		var temp2 = new myFunt('Jennifer');		
+		
+		// both instances use the same default value of data
+		temp1.showData();
+		temp2.showData();
+		
+		// however, if we change the data from one instance, it mirrors on the second instance
+		temp1.data.push(4);
+		
+		temp1.showData();
+		temp2.showData();*/
+		
+		/*
+			/////////////////////////////////////
+		*/
+		
+		//If you set the variable in the constructor, then you will get the behavior you expect
+		function myFunt(name) {
+			this.name = name;
+			this.data = [1 ,2 ,3];
+		}
+		
+		myFunt.prototype = {			
+			showData: function () {
+				console.log("name: " + this.name + " | data: " + this.data);
+			}
+		}
+		
+		var temp1 = new myFunt('Vijay');		
+		var temp2 = new myFunt('Jennifer');		
+		
+		temp1.showData();
+		temp2.showData();
+		
+		temp1.data.push(4);
+		
+		temp1.showData();
+		temp2.showData();
+	</script>
+</html>

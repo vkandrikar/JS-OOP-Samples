@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FABLE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+	
+    var animal = {
+		color: "yes",
+		eyes: "yes",
+        eat: function() {
+            console.log("I'm full")
+            this.full = true
+        }
+    }
+	
+	animal.prototype = {
+		walk: function () {
+			console.log("can walk")
+		},
+		
+		run: function () {
+			console.log("can run");
+		}
+	}
+
+    var rabbit = {
+        jump: function() {  }
+    }
+
+    //rabbit.prototype = animal
+	rabbit.__proto__ = animal
+	//console.log(rabbit)
+	
+	
+	
+	//============================
+	
+	function animals () { 
+		eats: true,
+		doSomething = function () {
+			console.log("calling anima's doSomething method");
+		}
+	}
+	
+	function Pets () {
+		console.log(this)
+		this.isFriendly = true,
+		this.color = 'white',
+		this.favFood = function favFood (food) {
+			console.log(this.name + ' likes ' + food);
+		}			
+	}
+	
+	Pets.prototype = {
+		eat: function () {
+			console.log("calling eat method of pet");
+		}
+	}
+	
+	Pets.prototype = animals.prototype
+	
+	var pet = new Pets();
+	console.log(pet)
+	
+
+    </script>
+</body>
+
+</html>
