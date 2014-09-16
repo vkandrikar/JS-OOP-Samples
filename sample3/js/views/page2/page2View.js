@@ -12,6 +12,18 @@ define(['text!templates/page2/page.html', '../../baseView', 'css!../../../css/mo
 		};
 	
 		Page2View.prototype = new BaseView();
+		
+		/*
+			YOU HAVE TO WRITE ALL PROTOTYPE HERE ONLY
+			OTHERWISE IT WILL OVERRIDED BY BASECLASS
+		*/
+		Page2View.prototype.doSomething = function () {
+			console.log("*** this is page view 2 doSomething ***");
+		};
+		
+		Page2View.prototype.cleanView = function () {
+			console.log("*** this is page view 2 cleanView ***");
+		};
 	
 		return Page2View;
 	}

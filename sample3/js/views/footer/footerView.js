@@ -1,17 +1,14 @@
-define(
-	function (require) {
+define(['text!templates/footer/page.html', '../../baseView'],
+	function (FooterTemplate, BaseView) {
 		'use strict';
 	
-		var Page1Template = require('text!templates/footer/page.html'),
-			BaseView = require('../../baseView');
-	
-		var Page1View = function() {
+		var FooterView = function() {
 			// @params: el (DOM Reference), template
-			BaseView.call(this, '#layoutFooter', Page1Template);
+			BaseView.call(this, '#layoutFooter', FooterTemplate);
 		};
 	
-		Page1View.prototype = new BaseView();
+		FooterView.prototype = new BaseView();
 	
-		return Page1View;
+		return FooterView;
 	}
 );
