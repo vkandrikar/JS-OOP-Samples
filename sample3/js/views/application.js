@@ -1,4 +1,4 @@
-define(['text!templates/layout.html', '../baseView', '../events'],
+define(['text!templates/layout.html', '../baseView', 'events'],
 	function (appTemplate, BaseView, Events) {
 		'use strict';
 		

@@ -1,8 +1,9 @@
-define(['text!templates/header/page.html', '../../baseView', '../../events'],
+define(['text!templates/header/page.html', '../../baseView', 'events'],
 	function (HeaderTemplate, BaseView, Events) {
 		'use strict';
 		
 		var prevSelectedpage = null;
+		var self = this;
 		
 		var HeaderView = function() {
 			// @params: el (DOM Reference), template
@@ -19,8 +20,9 @@ define(['text!templates/header/page.html', '../../baseView', '../../events'],
 			$('li a[class="activeHeaderNav"]').on('click', this.handlePageNavigation);
 		};
 		
-		HeaderView.prototype.handlePageNavigation = function () {
-			Events.dispatch( Events.PAGE_NAVIGATION_START );
+		HeaderView.prototype.handlePageNavigation = function (evt) {
+			if ($(evt.currentTarget).hasClass('activeHeaderNav'))
+				Events.dispatch( Events.PAGE_NAVIGATION_START );
 		};
 		
 		HeaderView.prototype.setActiveNavHeader = function (page) {

@@ -23,6 +23,10 @@ requirejs.config({
 		
 		/* List of Require.js plugins: */
         'text': 'vendors/require/plugins/text',	
+		
+		/* custom */
+		'events': 'events',
+		'globals': 'globals'
 	},
 	
 	shim: {

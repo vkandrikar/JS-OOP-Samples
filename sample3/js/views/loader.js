@@ -1,4 +1,4 @@
-define(['../baseView', '../events'],
+define(['../baseView', 'events'],
 	function (BaseView, Events) {
 		'use strict';
 		

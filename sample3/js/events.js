@@ -9,7 +9,7 @@ define ([],
 		}
 	 
 		Events.prototype.addListener = function( type, callback ) {
-			$( 'body' ).bind( type , callback );
+			$( 'body' ).on( type , callback );
 		}
 	 
 		Events.prototype.dispatch = function( type, data ) {

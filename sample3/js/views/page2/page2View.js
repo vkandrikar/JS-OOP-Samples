@@ -1,5 +1,5 @@
-define(['text!templates/page2/page.html', '../../baseView', 'css!../../../css/modules/page2.css'],
-	function (Page2Template, BaseView) {
+define(['text!templates/page2/page.html', '../../baseView', 'globals', 'css!../../../css/modules/page2.css'],
+	function (Page2Template, BaseView, Globals) {
 		'use strict';
 	
 		//var Page1Template = require('text!templates/page1/page.html'),
@@ -19,6 +19,7 @@ define(['text!templates/page2/page.html', '../../baseView', 'css!../../../css/mo
 		*/
 		Page2View.prototype.doSomething = function () {
 			console.log("*** this is page view 2 doSomething ***");
+			$("#mainWrapperPage2").append($("<h1/>").text("userId: " + Globals.userId + ", appVersion: " + Globals.appVersion));
 		};
 		
 		Page2View.prototype.cleanView = function () {
