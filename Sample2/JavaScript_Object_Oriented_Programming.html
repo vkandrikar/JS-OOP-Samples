@@ -54,8 +54,13 @@
 		*/
 		
 		// Define the Person constructor
-		/*function Person(firstName) {
+		/**/function Person(firstName) {
 		  this.firstName = firstName;
+
+		  this.talk = function () {
+		  	console.log(this);
+		  	console.log('Hi this is Person talk');
+		  }
 		}
 		
 		// Add a couple of methods to Person.prototype
@@ -98,11 +103,14 @@
 		
 		// Example usage:
 		var student1 = new Student("Janet", "Applied Physics");
-		
+		console.log(student1);
+
 		student1.sayHello();   // "Hello, I'm Janet. I'm studying Applied Physics."
 		student1.walk();       // "I am walking!"
 		student1.sayGoodBye(); // "Goodbye!"
-		
+
+		student1.talk();
+
 		console.log(student1.firstName);  // 		
 		console.log(student1.subject);  // 
 		
@@ -110,12 +118,12 @@
 		console.log(student1 instanceof Person);  // true 
 		console.log(student1 instanceof Student); // true
 		
-		//console.log(student1.constructor); // 
-		*/		
+		console.log(student1.constructor); // 
+				
 		
 		/*
 			*****************************
-		*/
+		
 		
 		function create(parent) {
 			var F = function() {};
@@ -147,6 +155,6 @@
 		console.log("\n*** when override masterObject.a ***");
 		console.log("object1.a: " + object1.a); // "new masterObject value"
 		console.log("object2.a: " + object2.a); // "new masterObject value"
-		console.log("object3.a: " + object3.a); // "overridden value"
+		console.log("object3.a: " + object3.a); // "overridden value"*/
 	</script>
 </html>

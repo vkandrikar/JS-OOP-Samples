@@ -4,7 +4,7 @@
     <head>
         <title>Closure</title>
         <meta http-equiv="X-UA-Compatible" content="IE=100" />
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="jquery2.1.1.min.js"></script>
     </head>
     
     <body>
@@ -79,35 +79,51 @@
 					privateCounter += val;
 				}
 				
-				return {
-					increment: function() {
-						changeBy(1);
-					},
+				var that = this;
+				that.increment = function () {
+					changeBy(1);
+				}
+				that.decrement = function () {
+					changeBy(-1);
+				}
+				that.value = function () {
+					return privateCounter;
+				}
+				return that;
+				// return {
+				// 	increment: function() {
+				// 		changeBy(1);
+				// 	},
 					
-					decrement: function() {
-						changeBy(-1);
-					},
+				// 	decrement: function() {
+				// 		changeBy(-1);
+				// 	},
 					
-					value: function() {
-						return privateCounter;
-					}
-				}  
+				// 	value: function() {
+				// 		return privateCounter;
+				// 	}
+				// }  
 			};
 			
 			// in this closure we ve created 2 private items: 'privateCounter' & 'changeBy'
 			// none of these item can be accessed directly from outside 'MakeCounter'
 			
 			function privateDataSample () {
-				var mc = MakeCounter();
+				var mc = new MakeCounter();
+				console.log(mc);
 				console.log("mc.value initial: " + mc.value());
+				mc.increment();
 				mc.increment();
 				mc.increment();
 				console.log("mc.value after 2 increment: " + mc.value());
 				mc.decrement();
 				console.log("mc.value after 1 decrement: " + mc.value());
+
+				var mc1 = new MakeCounter();
+				console.log("mc1.value initial: " + mc1.value());
 			}
 			
-			//privateDataSample();
+			privateDataSample();
 			
 			/*
 				*** Simple example for understading the use of closure ***
